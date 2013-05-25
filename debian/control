@@ -2,7 +2,7 @@ Source: raspberrypi-firmware
 Priority: extra
 Maintainer: Alex Bradbury <asb@asbradbury.org>
 Build-Depends: debhelper (>= 8.0.0), quilt
-Standards-Version: 3.9.2
+Standards-Version: 3.9.4
 Section: libs
 Homepage: https://github.com/raspberrypi/firmware
 #Vcs-Git: todo
@@ -30,10 +30,11 @@ Package: libraspberrypi-doc
 Section: libdevel
 Architecture: armel armhf
 Depends: libraspberrypi0 (= ${binary:Version}), ${misc:Depends}
-Description: EGL/GLES/OpenVG/etc. libraries for the Raspberry Pi's VideoCore IV (headers)
- This package contains headers, example code, and other development files for
- implementations of EGL, OpenGL ES, OpenVG, OpenWF Composition, and others for
- the Raspberry Pi's VideoCore IV multimedia processor.
+Recommends: libraspberrypi-dev (= ${binary:Version})
+Description: Documentation and sample code for the Raspberry Pi's VideoCore IV
+ This package contains example code and documentation for implementations
+ of EGL, OpenGL ES, OpenVG, OpenWF Composition, and others for the Raspberry
+ Pi's VideoCore IV multimedia processor.
 
 Package: libraspberrypi-bin
 Section: misc
@@ -46,7 +47,16 @@ Description: Miscellaneous Raspberry Pi utilities
 Package: raspberrypi-bootloader
 Section: admin
 Architecture: armel armhf
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, raspberrypi-foundation-kernel (= ${binary:Version}) | linux-image
 Description: Raspberry Pi bootloader
- This package contains the Raspberry Pi bootloader (plus, temporarily, a
- kernel).
+ This package contains the Raspberry Pi bootloader.
+
+Package: raspberrypi-foundation-kernel
+Section: kernel
+Architecture: armel armhf
+Depends: ${misc:Depends}
+Conflicts: raspberrypi-bootloader (<= 1.20130524-1)
+Replaces: raspberrypi-bootloader (<= 1.20130524-1)
+Description: Linux kernel for the Raspberry Pi
+ This package contains a Linux kernel compiled by the Raspberry Pi Foundation.
+

@@ -1,0 +1,3 @@
+boot/kernel*.img /boot/
+modules /lib/
+

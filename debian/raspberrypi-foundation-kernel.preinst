@@ -1,5 +1,5 @@
 #!/bin/sh -e
-FILES="bootcode.bin fixup.dat fixup_cd.dat fixup_x.dat start.elf start_cd.elf start_x.elf"
+FILES="kernel.img kernel_emergency.img"
 
 # dpkg-divert will error out otherwise
 mkdir -p /usr/share/rpikernelhack
